@@ -1,40 +1,33 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { Canvas, Circle, Group } from "@shopify/react-native-skia";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import { GameEngine } from 'react-native-game-engine';
 
-const App = () => {
-  const size = 256;
-  const r = size * 0.33;
+import Entities from './entities';
+import Systems from './systems';
 
-  return (
-    <View style={styles.container}>
-      <Canvas
-        // style={{ flex: 1 }}
-        height={300}
-        width={300}
-      >
-        <Circle r={20} cx={64} cy={300} color="red" />
-
-        <Group blendMode="multiply">
-          <Circle cx={r} cy={r} r={r} color="cyan" />
-          <Circle cx={size - r} cy={r} r={r} color="magenta" />
-          <Circle cx={size / 2} cy={size - r} r={r} color="yellow" />
-        </Group>
-      </Canvas>
-
-      <Text>Open up App.js to start working on your app!</Text>
-
-      <StatusBar style="auto" />
-    </View>
-  );
-};
+const App = () => (
+  <View style={styles.container}>
+    <GameEngine
+      entities={Entities()}
+      running={true}
+      style={styles.gameContainer}
+      systems={Systems}
+    />
+    <StatusBar style="auto" />
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+  },
+  gameContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
 });
 
