@@ -1,0 +1,1 @@
+export const LOCAL_MODE_LOGGER = 'LOCAL_MODE_LOGGER';
