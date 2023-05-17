@@ -1,26 +1,66 @@
+import React, { useRef, useState } from 'react';
+import GameOver from './src/components/GameOver';
+
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { GameEngine } from 'react-native-game-engine';
+import { height, width } from './src/utils/styleSheet';
 
-import Entities from './entities';
-import Systems from './systems';
+import Entities from './src/entities';
+import Systems from './src/systems';
 
-const App = () => (
-  <View style={styles.container}>
-    <GameEngine
-      entities={Entities()}
-      running={true}
-      style={styles.gameContainer}
-      systems={Systems}
-    />
-    <StatusBar style="auto" />
-  </View>
-);
+const backgroundImage = require('./src/assets/nature.jpg');
+
+const App = () => {
+  const [isRunning, setIsRunning] = useState(true);
+  const [score, setScore] = useState(0);
+  const gameEngineRef = useRef(null);
+
+  return (
+    <View style={styles.container}>
+      <Image
+        style={styles.imageBackground}
+        resizeMode="stretch"
+        source={backgroundImage}
+      />
+
+      <GameEngine
+        entities={Entities()}
+        running={true}
+        style={styles.gameContainer}
+        systems={Systems}
+        onEvent={({ type }) => {
+          if (type === 'gameOver') {
+            setIsRunning(false);
+          } else if (type === 'score') {
+            setScore(score + 1);
+          }
+        }}
+        ref={gameEngineRef}
+      />
+
+      {isRunning ? (
+        <Text style={styles.score}>{score}</Text>
+      ) : (
+        <GameOver
+          score={score}
+          restart={() => {
+            gameEngineRef.current.swap(Entities());
+            setIsRunning(true);
+            setScore(0);
+          }}
+        />
+      )}
+
+      <StatusBar style="auto" />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#0f0',
   },
   gameContainer: {
     position: 'absolute',
@@ -28,6 +68,28 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+  },
+  score: {
+    color: '#ffffff',
+    fontSize: 50,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    top: 100,
+    // fontFamily: 'crackman-regular',
+  },
+  imageBackground: {
+    width: width,
+    height: height,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  gameOverContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

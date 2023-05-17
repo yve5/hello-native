@@ -4,8 +4,8 @@ const UpdatePlane = (entities, { touches, time }) => {
   const engine = entities.physics.engine;
 
   touches
-    .filter((t) => t.type === 'press')
-    .forEach((t) => {
+    .filter(({ type }) => type === 'press')
+    .forEach(() => {
       Matter.Body.setVelocity(entities.Plane.body, {
         x: entities.Plane.body.velocity.x,
         y: -3,

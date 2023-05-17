@@ -1,9 +1,11 @@
 import React from 'react';
-import Matter from 'matter-js';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { array, object, string } from 'prop-types';
+import Matter from 'matter-js';
 
-const Obstacle = (props) => {
+const water = require('../assets/water.png');
+
+const Floor = (props) => {
   const width = props.size[0];
   const height = props.size[1];
   const x = props.body.position.x - width / 2;
@@ -17,34 +19,39 @@ const Obstacle = (props) => {
           left: x,
           top: y,
           width: width,
-          borderRadius: 20,
           height: height,
+          backgroundColor: props.color || 'pink',
         },
       ]}
-    />
+    >
+      <Image
+        style={{ width: width, height: height }}
+        source={water}
+        resizeMode="stretch"
+      />
+    </View>
   );
 };
 
-export default (world, type, pos, size) => {
-  const initialObstacle = Matter.Bodies.rectangle(
+export default (world, color, pos, size) => {
+  const initialFloor = Matter.Bodies.rectangle(
     pos.x,
     pos.y,
     size.width,
     size.height,
     { isStatic: true, friction: 1 }
   );
-  Matter.World.add(world, [initialObstacle]);
+  Matter.World.add(world, [initialFloor]);
 
   return {
-    body: initialObstacle,
+    body: initialFloor,
     size: [size.width, size.height],
-    type: type,
-    scored: false,
-    renderer: <Obstacle />,
+    color: color,
+    renderer: <Floor />,
   };
 };
 
-Obstacle.propTypes = {
+Floor.propTypes = {
   size: array,
   body: object,
   color: string,

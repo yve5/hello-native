@@ -4,7 +4,7 @@ import Ceiling from '../components/Ceiling';
 import Obstacle from '../components/Obstacle';
 import Matter from 'matter-js';
 
-import Constants from '../utils/constants';
+import { TOP_PIPE_WIDTH, BOTTOM_PIPE_WIDTH } from '../utils/constants';
 import { height, width, heightRatio, widthRatio } from '../utils/styleSheet';
 import {
   getRandom,
@@ -12,11 +12,11 @@ import {
   bottomObstacleHeight,
 } from '../utils/random';
 
-//-- Overriding this function because the original references HTMLElement
-Matter.Common.isElement = () => false;
+// Overriding this function because the original references HTMLElement
+// Matter.Common.isElement = () => false;
 
 export default (restart) => {
-  //-- Cleanup existing entities..
+  // Cleanup existing entities...
   if (restart) {
     Matter.Engine.clear(restart.physics.engine);
   }
@@ -42,26 +42,27 @@ export default (restart) => {
     Ceiling: Ceiling(
       world,
       'white',
-      { x: width / 2, y: -heightRatio * 120 },
+      // { x: width / 2, y: -heightRatio * 120 },
+      { x: width / 2, y: 0 },
       { height: heightRatio * 120, width: width }
     ),
     Obstacle1: Obstacle(
       world,
       'top',
       {
-        x: width * 2 - Constants.TOP_PIPE_WIDTH / 2,
+        x: width * 2 - TOP_PIPE_WIDTH / 2,
         y: getRandom(heightRatio * 100, heightRatio * 300),
       },
-      { height: topObstacleHeight, width: Constants.TOP_PIPE_WIDTH }
+      { height: topObstacleHeight, width: TOP_PIPE_WIDTH }
     ),
     Obstacle2: Obstacle(
       world,
       'bottom',
       {
-        x: width * 3 - Constants.BOTTOM_PIPE_WIDTH / 2,
+        x: width * 3 - BOTTOM_PIPE_WIDTH / 2,
         y: getRandom(heightRatio * 300, heightRatio * 500),
       },
-      { height: bottomObstacleHeight, width: Constants.BOTTOM_PIPE_WIDTH }
+      { height: bottomObstacleHeight, width: BOTTOM_PIPE_WIDTH }
     ),
   };
 };

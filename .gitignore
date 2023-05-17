@@ -18,3 +18,4 @@ web-build/
 
 # personal
 package-lock.json
+yarn.lock

@@ -1,18 +1,19 @@
 import React from 'react';
 import Matter from 'matter-js';
-import { View, Image } from 'react-native';
+
 import { array, object, string } from 'prop-types';
+import { Image, Text } from 'react-native';
 
-const water = require('../assets/water.png');
+const rocket = require('../assets/rocket.png');
 
-const Floor = (props) => {
+const Obstacle = (props) => {
   const width = props.size[0];
   const height = props.size[1];
   const x = props.body.position.x - width / 2;
   const y = props.body.position.y - height / 2;
 
   return (
-    <View
+    <Image
       style={[
         {
           position: 'absolute',
@@ -20,21 +21,16 @@ const Floor = (props) => {
           top: y,
           width: width,
           height: height,
-          backgroundColor: props.color || 'pink',
         },
       ]}
-    >
-      <Image
-        style={{ width: width, height: height }}
-        source={water}
-        resizeMode="stretch"
-      />
-    </View>
+      resizeMode="stretch"
+      source={rocket}
+    />
   );
 };
 
-export default (world, color, pos, size) => {
-  const initialFloor = Matter.Bodies.rectangle(
+export default (world, type, pos, size) => {
+  const initialObstacle = Matter.Bodies.rectangle(
     pos.x,
     pos.y,
     size.width,
@@ -42,17 +38,18 @@ export default (world, color, pos, size) => {
     { isStatic: true, friction: 1 }
   );
 
-  Matter.World.add(world, [initialFloor]);
+  Matter.World.add(world, [initialObstacle]);
 
   return {
-    body: initialFloor,
+    body: initialObstacle,
     size: [size.width, size.height],
-    color: color,
-    renderer: <Floor />,
+    type: type,
+    scored: false,
+    renderer: <Obstacle />,
   };
 };
 
-Floor.propTypes = {
+Obstacle.propTypes = {
   size: array,
   body: object,
   color: string,
