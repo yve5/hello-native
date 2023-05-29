@@ -4,10 +4,12 @@ import { getRandom } from '../utils/random';
 import { width, heightRatio } from '../utils/styleSheet';
 
 const UpdateObstacle = (entities, { time, dispatch }) => {
-  let engine = entities.physics.engine;
+  const {
+    physics: { engine },
+  } = entities;
 
-  for (let i = 1; i <= 2; i++) {
-    const obstacle = entities['Obstacle' + i];
+  for (let i = 1; i <= 2; i += 1) {
+    const obstacle = entities[`Obstacle${i}`];
 
     if (
       obstacle.type === 'top' &&
@@ -34,8 +36,8 @@ const UpdateObstacle = (entities, { time, dispatch }) => {
 
   Matter.Engine.update(engine, time.delta);
 
-  for (let i = 1; i <= 2; i++) {
-    const obstacle = entities['Obstacle' + i];
+  for (let i = 1; i <= 2; i += 1) {
+    const obstacle = entities[`Obstacle${i}`];
 
     if (
       obstacle.body.position.x <= entities.Plane.body.position.x &&

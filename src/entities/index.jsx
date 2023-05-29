@@ -1,8 +1,9 @@
+import Matter from 'matter-js';
+
 import Plane from '../components/Plane';
 import Floor from '../components/Floor';
 import Ceiling from '../components/Ceiling';
 import Obstacle from '../components/Obstacle';
-import Matter from 'matter-js';
 
 import { TOP_PIPE_WIDTH, BOTTOM_PIPE_WIDTH } from '../utils/constants';
 import { height, width, heightRatio, widthRatio } from '../utils/styleSheet';
@@ -21,12 +22,12 @@ export default (restart) => {
     Matter.Engine.clear(restart.physics.engine);
   }
 
-  let engine = Matter.Engine.create({ enableSleeping: false });
-  let world = engine.world;
+  const engine = Matter.Engine.create({ enableSleeping: false });
+  const { world } = engine;
   world.gravity.y = 0.25;
 
   return {
-    physics: { engine: engine, world: world },
+    physics: { engine, world },
     Plane: Plane(
       world,
       'pink',
@@ -37,14 +38,14 @@ export default (restart) => {
       world,
       'white',
       { x: width / 2, y: height - heightRatio * 40 },
-      { height: heightRatio * 90, width: width }
+      { height: heightRatio * 90, width }
     ),
     Ceiling: Ceiling(
       world,
       'white',
       // { x: width / 2, y: -heightRatio * 120 },
       { x: width / 2, y: 0 },
-      { height: heightRatio * 120, width: width }
+      { height: heightRatio * 120, width }
     ),
     Obstacle1: Obstacle(
       world,

@@ -1,10 +1,12 @@
 import Matter from 'matter-js';
 
 const Physics = (entities, { time, dispatch }) => {
-  let engine = entities.physics.engine;
+  const {
+    physics: { engine },
+  } = entities;
 
   Matter.Engine.update(engine, time.delta);
-  Matter.Events.on(engine, 'collisionStart', (event) => {
+  Matter.Events.on(engine, 'collisionStart', () => {
     dispatch({ type: 'gameOver' });
   });
 

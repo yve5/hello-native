@@ -1,7 +1,9 @@
 import Matter from 'matter-js';
 
 const UpdatePlane = (entities, { touches, time }) => {
-  const engine = entities.physics.engine;
+  const {
+    physics: { engine },
+  } = entities;
 
   touches
     .filter(({ type }) => type === 'press')
