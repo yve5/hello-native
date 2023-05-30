@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "nodemon --exec eslint src/**/*.{js,jsx}"
+    "lint": "eslint \"**/*.jsx\" --ignore-pattern node_modules/; exit 0",
+    "test": "nodemon --watch src -e js,jsx --exec 'npm run lint && node'"
   },
   "dependencies": {
     "@expo/webpack-config": "18.0.4",
@@ -15,6 +16,7 @@
     "expo-status-bar": "1.4.4",
     "matter-js": "0.19.0",
     "phaser": "3.60.0",
+    "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.71.8",
@@ -23,9 +25,11 @@
   },
   "devDependencies": {
     "@babel/core": "7.21.8",
+    "@babel/eslint-parser": "^7.21.8",
     "eslint": "8.40.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-react": "7.32.2",
     "nodemon": "2.0.22"
   },
   "private": true

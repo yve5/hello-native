@@ -4,8 +4,8 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ['airbnb-base'],
-  ignorePatterns: ['**/*.test.jsx'],
+  extends: ['airbnb-base', 'plugin:react/recommended'],
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',

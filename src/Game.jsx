@@ -10,6 +10,41 @@ import { height, width } from './utils/styleSheet';
 
 const backgroundImage = require('./assets/nature.jpg');
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0f0',
+  },
+  gameContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  score: {
+    color: '#ffffff',
+    fontSize: 50,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    top: 100,
+  },
+  imageBackground: {
+    width,
+    height,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  gameOverContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
 const Game = () => {
   const [isRunning, setIsRunning] = useState(true);
   const [score, setScore] = useState(0);
@@ -55,41 +90,5 @@ const Game = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0f0',
-  },
-  gameContainer: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  score: {
-    color: '#ffffff',
-    fontSize: 50,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    top: 100,
-    // fontFamily: 'crackman-regular',
-  },
-  imageBackground: {
-    width,
-    height,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  gameOverContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default Game;

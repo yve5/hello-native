@@ -17,8 +17,8 @@ const Plane = (props) => {
         position: 'absolute',
         left: x,
         top: y,
-        width: width,
-        height: height,
+        width,
+        height,
       }}
       resizeMode="stretch"
       source={airplane}
@@ -39,7 +39,7 @@ export default (world, color, pos, size) => {
   return {
     body: initialPlane,
     size: [size.width, size.height],
-    color: color,
+    color,
     renderer: <Plane />,
   };
 };

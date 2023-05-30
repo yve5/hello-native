@@ -18,8 +18,8 @@ const Ceiling = (props) => {
         position: 'absolute',
         left: x,
         top: y,
-        width: width,
-        height: height,
+        width,
+        height,
       }}
       resizeMode="stretch"
       source={clouds}
@@ -41,7 +41,7 @@ export default (world, color, pos, size) => {
   return {
     body: initialCeiling,
     size: [size.width, size.height],
-    color: color,
+    color,
     renderer: <Ceiling />,
   };
 };

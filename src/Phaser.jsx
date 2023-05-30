@@ -1,23 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 // import Showcase from './showcase';
-
-const Game = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </Text>
-
-      {/*<Showcase />*/}
-
-      <StatusBar style="auto" />
-    </View>
-  );
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -30,5 +15,20 @@ const styles = StyleSheet.create({
     top: 100,
   },
 });
+
+const Game = () => (
+  <View style={styles.container}>
+    <Text style={styles.title}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </Text>
+
+    {/*
+    <Showcase />
+    */}
+
+    <StatusBar style="auto" />
+  </View>
+);
 
 export default Game;

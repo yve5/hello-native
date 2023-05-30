@@ -1,7 +1,7 @@
 import React from 'react';
+import Matter from 'matter-js';
 import { View, Image } from 'react-native';
 import { array, object, string } from 'prop-types';
-import Matter from 'matter-js';
 
 const water = require('../assets/water.png');
 
@@ -18,17 +18,13 @@ const Floor = (props) => {
           position: 'absolute',
           left: x,
           top: y,
-          width: width,
-          height: height,
+          width,
+          height,
           backgroundColor: props.color || 'pink',
         },
       ]}
     >
-      <Image
-        style={{ width: width, height: height }}
-        source={water}
-        resizeMode="stretch"
-      />
+      <Image style={{ width, height }} source={water} resizeMode="stretch" />
     </View>
   );
 };
@@ -46,7 +42,7 @@ export default (world, color, pos, size) => {
   return {
     body: initialFloor,
     size: [size.width, size.height],
-    color: color,
+    color,
     renderer: <Floor />,
   };
 };

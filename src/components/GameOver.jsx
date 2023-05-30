@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { func, number } from 'prop-types';
 import {
   View,
   Text,
@@ -9,6 +10,48 @@ import {
 
 import styleGuide from '../utils/styleGuide';
 import { heightRatio, widthRatio } from '../utils/styleSheet';
+
+const styles = StyleSheet.create({
+  gameOverContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  animatedCard: {
+    width: widthRatio * 260,
+    height: heightRatio * 200,
+    padding: heightRatio * 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 5,
+    ...styleGuide.bigShadow,
+  },
+  gameOverText: {
+    fontSize: heightRatio * 30,
+    fontWeight: 'bold',
+    color: 'grey',
+    marginBottom: heightRatio * 20,
+    // fontFamily: 'crackman-regular',
+  },
+  container: {
+    height: heightRatio * 30,
+    width: widthRatio * 100,
+    borderRadius: 6,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'transparent',
+    backgroundColor: styleGuide.primaryColor,
+  },
+  shadow: {
+    ...styleGuide.bigShadow,
+  },
+  textStyle: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: '500',
+  },
+});
 
 const GameOver = ({ restart, score }) => {
   const animatedValue = new Animated.Value(0);
@@ -59,46 +102,9 @@ const GameOver = ({ restart, score }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  gameOverContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  animatedCard: {
-    width: widthRatio * 260,
-    height: heightRatio * 200,
-    padding: heightRatio * 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: 5,
-    ...styleGuide.bigShadow,
-  },
-  gameOverText: {
-    fontSize: heightRatio * 30,
-    fontWeight: 'bold',
-    color: 'grey',
-    marginBottom: heightRatio * 20,
-    // fontFamily: 'crackman-regular',
-  },
-  container: {
-    height: heightRatio * 30,
-    width: widthRatio * 100,
-    borderRadius: 6,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: 'transparent',
-    backgroundColor: styleGuide.primaryColor,
-  },
-  shadow: {
-    ...styleGuide.bigShadow,
-  },
-  textStyle: {
-    color: 'white',
-    fontSize: 14,
-    fontWeight: '500',
-  },
-});
+GameOver.propTypes = {
+  restart: func,
+  score: number,
+};
 
 export default GameOver;

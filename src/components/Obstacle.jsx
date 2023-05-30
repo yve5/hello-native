@@ -2,7 +2,7 @@ import React from 'react';
 import Matter from 'matter-js';
 
 import { array, object, string } from 'prop-types';
-import { Image, Text } from 'react-native';
+import { Image } from 'react-native';
 
 const rocket = require('../assets/rocket.png');
 
@@ -19,8 +19,8 @@ const Obstacle = (props) => {
           position: 'absolute',
           left: x,
           top: y,
-          width: width,
-          height: height,
+          width,
+          height,
         },
       ]}
       resizeMode="stretch"
@@ -43,7 +43,7 @@ export default (world, type, pos, size) => {
   return {
     body: initialObstacle,
     size: [size.width, size.height],
-    type: type,
+    type,
     scored: false,
     renderer: <Obstacle />,
   };
