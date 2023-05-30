@@ -1,5 +1,5 @@
 import React from 'react';
-import Game from './src/Game';
+import Game from './src/Phaser';
 
 const App = () => <Game />;
 

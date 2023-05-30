@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     // fontFamily: 'crackman-regular',
   },
   imageBackground: {
-    width: width,
-    height: height,
+    width,
+    height,
     position: 'absolute',
     top: 0,
     bottom: 0,
