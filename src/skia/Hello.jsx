@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { Canvas, Circle, Group } from '@shopify/react-native-skia';
 
-export const Hello = () => {
+const Hello = () => {
   const size = 256;
   const r = size * 0.33;
 
